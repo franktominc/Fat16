@@ -7,6 +7,7 @@
 
 
 #include <stdio.h>
+#include <string.h>
 
 class BootSector {
 public:
@@ -24,6 +25,7 @@ public:
     unsigned short number_of_heads;
     unsigned int hidden_sectors;
     unsigned int large_total_sectors;
+    unsigned char padding[476]{0};
 
 
     BootSector(unsigned short bytes_per_sector,
@@ -54,7 +56,11 @@ public:
         jump_instruction[1] = 0x3C;
         jump_instruction[2] = 0x90;
         sprintf(OEM_Identifier,"mkdosfs");
+
+        padding[510-36] = 0X55;
+        padding[511-36] = 0XAA;
     }
+    //void WriteToFS(FILE* f);
 };
 
 
