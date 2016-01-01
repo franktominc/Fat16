@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 
-class BootSector {
+class __attribute__((__packed__)) BootSector {
 public:
     unsigned char jump_instruction[3];
     char OEM_Identifier[8];
