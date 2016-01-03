@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
     FILE *f;
-    f=fopen("teste", "w+");
+    f=fopen("/home/ftominc/teste", "w+");
     if(f == NULL){
         cout << "deu zica" << endl;
     }
@@ -27,7 +27,7 @@ int main() {
             sizeof(b.large_total_sectors)+
             sizeof(b.padding) << endl;
     cout << sizeof(BootSector) << endl;
-    //b.WriteToFS(f);
+    b.WriteToFS(f);
     cout << "Hello, World!" << endl;
     return 0;
 }

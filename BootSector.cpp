@@ -4,7 +4,7 @@
 
 #include "BootSector.h"
 
-//void BootSector::WriteToFS(FILE *f) {
-//    fwrite(this, sizeof(BootSector), 1, f);
+void BootSector::WriteToFS(FILE *f) {
+    fwrite(this, sizeof(BootSector), 1, f);
 
-//}
+}

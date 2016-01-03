@@ -60,7 +60,7 @@ public:
         padding[510-36] = 0X55;
         padding[511-36] = 0XAA;
     }
-    //void WriteToFS(FILE* f);
+    void WriteToFS(FILE* f);
 };
 
 
