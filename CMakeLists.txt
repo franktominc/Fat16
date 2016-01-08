@@ -3,5 +3,5 @@ project(Fat16)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp BootSector.cpp BootSector.h)
+set(SOURCE_FILES main.cpp BootSector.cpp BootSector.h FATTable.cpp FATTable.h)
 add_executable(Fat16 ${SOURCE_FILES})

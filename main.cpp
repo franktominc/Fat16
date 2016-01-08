@@ -1,5 +1,6 @@
 #include <iostream>
 #include "BootSector.h"
+#include "FATTable.h"
 
 using namespace std;
 
@@ -9,7 +10,7 @@ int main() {
     if(f == NULL){
         cout << "deu zica" << endl;
     }
-
+    FATTable fatTable(10);
     BootSector b(512,1,1,1,1,1,1,1,1,1,1,1);
     cout << sizeof(b.jump_instruction) +
             sizeof(b.OEM_Identifier) +
