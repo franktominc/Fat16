@@ -1,6 +1,7 @@
 #include <iostream>
 #include "BootSector.h"
 #include "FATTable.h"
+#include "FileEntry.h"
 
 using namespace std;
 
@@ -30,5 +31,6 @@ int main() {
     cout << sizeof(BootSector) << endl;
     b.WriteToFS(f);
     cout << "Hello, World!" << endl;
+    cout << sizeof(FileEntry) << endl;
     return 0;
 }
