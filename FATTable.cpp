@@ -3,3 +3,13 @@
 //
 
 #include "FATTable.h"
+
+FATTable::FATTable(unsigned short n) {
+    this->n = n;
+    address = new unsigned short[n];
+    printf("%d\n", (int) sizeof(address));
+}
+
+void FATTable::writeToFs(FILE *f) {
+    fwrite(this->address, n, sizeof(short), f);
+}

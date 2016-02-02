@@ -12,11 +12,10 @@ class FATTable {
 public:
     unsigned short n;
     unsigned short * address;
-    FATTable(unsigned short n){
-        this->n = n;
-        address = new unsigned short[n];
-        printf("%d\n", (int) sizeof(address));
-    }
+
+    FATTable(unsigned short n);
+
+    void writeToFs(FILE * f);
 };
 
 

@@ -10,14 +10,20 @@ void Fat16FileSystem::writeToFS() {
     FATTable f(b.total_sectors);
     FileEntry fe;
     memset(&fe, 0, sizeof(fe));
-    fwrite(&b, sizeof(b), 1, file);
-    for (int j = 0; j < 63; ++j) {
+    b.WriteToFS(file);
+    for (int j = 0; j < (b.bytes_per_sector - 512)/512; ++j) {
         filler fi;
         fi.writeToFs(file);
     }
-    fwrite(&f, sizeof(f)- sizeof(short),1, file);
+
+    f.writeToFs(file);
     for (int i = 0; i < b.directory_entries; ++i) {
         fwrite(&fe, sizeof(fe), 1, file);
+    }
+    printf("%d\n", sizeof(fe));
+    for (int k = 0; k < b.sectors_per_cluster*b.total_sectors; ++k) {
+        filler fi;
+        fi.writeToFs(file);
     }
 
 }
