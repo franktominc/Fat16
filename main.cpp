@@ -8,7 +8,7 @@ using namespace std;
 
 int main() {
     FILE *f;
-    f=fopen("/home/ftominc/Downloads/teste", "w+");
+    f=fopen("/dev/sdb1", "w+");
     if(f == NULL){
         cout << "deu zica" << endl;
     }

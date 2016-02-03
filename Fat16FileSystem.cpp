@@ -6,7 +6,7 @@
 #include "filler.h"
 
 void Fat16FileSystem::writeToFS() {
-    BootSector b(512,64,1,1,512,65533,0xf8,1,1,1,0,0);
+    BootSector b(512,128,1,1,2048,0,0xf8,128,32,64,2048,4194304);
     FATTable f(b.total_sectors);
     FileEntry fe;
     memset(&fe, 0, sizeof(fe));
