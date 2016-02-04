@@ -10,10 +10,10 @@
 
 class FATTable {
 public:
-    unsigned short n;
+    unsigned int n;
     unsigned short * address;
 
-    FATTable(unsigned short n);
+    FATTable(unsigned int n);
 
     void writeToFs(FILE * f);
 };

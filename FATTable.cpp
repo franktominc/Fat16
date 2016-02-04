@@ -4,7 +4,7 @@
 
 #include "FATTable.h"
 
-FATTable::FATTable(unsigned short n) {
+FATTable::FATTable(unsigned int n) {
     this->n = n;
     address = new unsigned short[n];
     printf("%d\n", (int) sizeof(address));
