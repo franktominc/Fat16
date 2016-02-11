@@ -8,16 +8,22 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 class filler {
 public:
-    unsigned char* myVec;
+    unsigned char* myVec = (unsigned char *)calloc(512, sizeof(char));
 
     void writeToFs(FILE * a);
 
     filler(){
-        myVec = new unsigned char[512];
-        memset(myVec, 0,512);
+        for (int i = 0; i < 512; ++i) {
+            if(i%10 == 0)
+                printf("\n");
+            printf("%4d", myVec[i]);
+        }
+
+
     }
 };
 

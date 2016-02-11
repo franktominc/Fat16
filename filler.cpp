@@ -5,5 +5,5 @@
 #include "filler.h"
 
 void filler::writeToFs(FILE *a) {
-    fwrite(this, 512,1,a);
+    fwrite(this->myVec, sizeof(char),512,a);
 }

@@ -8,31 +8,36 @@
 
 using namespace std;
 
-void Fat16FileSystem::writeToFS() {
-    BootSector b(512,128,1,1,2048,0,0xf8,128,32,64,2048,4194304);
-    FATTable f(b.total_sectors);
-    FileEntry fe;
-    filler fi;
-    memset(&fe, 0, sizeof(fe));
-    b.WriteToFS(file);
-    cout << "Writing the fillers" << endl;
-    for (int j = 0; j < (b.bytes_per_sector - 512)/512; ++j) {
+    void Fat16FileSystem::writeToFS() {
+        BootSector b(512,128,1,1,2048,0,0xf8,128,32,64,2048,4194304);
+        FATTable f(b.sectors_per_fat);
+        FileEntry fe;
+        filler fi;
+        unsigned char* n = (unsigned char*) calloc(sizeof(unsigned char), 512);
 
-        fi.writeToFs(file);
+        //memset(&fi, 0, 512);
+        b.WriteToFS(file);
+        cout << "Writing the fillers" << endl;
+        for (int j = 0; j < (b.bytes_per_sector - 512)/512; j++) {
+            fi.writeToFs(file);
+
+        }
+        cout << (b.bytes_per_sector - 512)/512 << " fillers was written" << endl;
+
+        f.writeToFs(file);
+
+        cout << "Writing " << b.directory_entries << " directory entries to FS" << endl;
+
+        for (int i = 0; i < b.directory_entries; i++) {
+            fe.writeToFs(file);
+        }
+
+
+        cout << "Writing " << b.large_total_sectors << " fillers to FS";
+
+        for (long k = 0; k < b.large_total_sectors; k++) {
+            fi.writeToFs(file);
+            //printf("%s\n", n);
+        }
+
     }
-    cout << (b.bytes_per_sector - 512)/512 << " fillers was written" << endl;
-
-    f.writeToFs(file);
-
-    cout << "Writing " << b.directory_entries << " directory entries to FS" << endl;
-
-    for (int i = 0; i < b.directory_entries; ++i) {
-        fwrite(&fe, sizeof(fe), 1, file);
-    }
-    cout << "Writing " << b.large_total_sectors << " fillers to FS";
-
-    for (int k = 0; k < b.large_total_sectors; ++k) {
-        fi.writeToFs(file);
-    }
-
-}
