@@ -9,16 +9,21 @@
 #include "BootSector.h"
 #include "FATTable.h"
 #include "FileEntry.h"
+#include "filler.h"
 
 class Fat16FileSystem {
     FILE * file;
 
+
+
 public:
+
     Fat16FileSystem(FILE* file):
             file(file){
     }
 
-    void writeToFS();
+    void zeroFillFormatter();
+    void fastFormatter();
 };
 
 
